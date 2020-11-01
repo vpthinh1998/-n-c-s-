@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9389312fd6ad4eb0a7564b4b615421e5" Name="Diagram1">
+        <EntityTypeShape EntityType="DACSModel.COSO" Width="1.5" PointX="1.5" PointY="16.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DACSModel.DIEM" Width="1.5" PointX="7.5" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DACSModel.EVENT" Width="1.5" PointX="5.25" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DACSModel.LICHHOC" Width="1.5" PointX="0.75" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DACSModel.LOPHOC" Width="1.5" PointX="3" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DACSModel.MONHOC" Width="1.5" PointX="5.25" PointY="22.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DACSModel.NGANH" Width="1.5" PointX="7.5" PointY="22.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DACSModel.NIENKHOA" Width="1.5" PointX="5.25" PointY="19.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DACSModel.PERMISSION" Width="1.5" PointX="0.75" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DACSModel.PHONGHOC" Width="1.5" PointX="1.5" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="DACSModel.ROLE" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DACSModel.STUDENT" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="DACSModel.THOIGIANHOC" Width="1.5" PointX="1.5" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DACSModel.TINCHI" Width="1.5" PointX="3" PointY="22.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DACSModel.USER" Width="1.5" PointX="3" PointY="3.375" IsExpanded="true" />
+        <AssociationConnector Association="DACSModel.FK__PHONGHOC__IDCOSO__398D8EEE" ManuallyRouted="false" />
+        <AssociationConnector Association="DACSModel.FK__DIEM__IDMONHOC__33D4B598" ManuallyRouted="false" />
+        <AssociationConnector Association="DACSModel.FK__DIEM__IDSTUDENT__31EC6D26" ManuallyRouted="false" />
+        <AssociationConnector Association="DACSModel.FK__EVENTS__IDUSER__300424B4" ManuallyRouted="false" />
+        <AssociationConnector Association="DACSModel.FK__LICHHOC__IDPHONG__38996AB5" ManuallyRouted="false" />
+        <AssociationConnector Association="DACSModel.FK__LICHHOC__IDTHOIG__3A81B327" ManuallyRouted="false" />
+        <AssociationConnector Association="DACSModel.FK__LOPHOC__3B75D760" ManuallyRouted="false" />
+        <AssociationConnector Association="DACSModel.FK__STUDENT__IDLOPHO__3C69FB99" ManuallyRouted="false" />
+        <AssociationConnector Association="DACSModel.FK__MONHOC__IDTINCHI__36B12243" ManuallyRouted="false" />
+        <AssociationConnector Association="DACSModel.FK__NGANH__IDNIENKHO__37A5467C" ManuallyRouted="false" />
+        <AssociationConnector Association="DACSModel.FK__USER__IDPERMISSI__3D5E1FD2" ManuallyRouted="false" />
+        <AssociationConnector Association="DACSModel.FK__USER__IDROLE__30F848ED" ManuallyRouted="false" />
+        <AssociationConnector Association="DACSModel.FK__STUDENT__IDUSER__2F10007B" ManuallyRouted="false" />
+        <AssociationConnector Association="DACSModel.CTDT" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DACSModel.sysdiagram" Width="1.5" PointX="7.375" PointY="4.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

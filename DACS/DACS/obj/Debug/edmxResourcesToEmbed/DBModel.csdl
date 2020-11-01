@@ -1,0 +1,454 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DACSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="COSO">
+    <Key>
+      <PropertyRef Name="IDCOSO" />
+    </Key>
+    <Property Name="IDCOSO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TENCS" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="PHONGHOCs" Relationship="Self.FK__PHONGHOC__IDCOSO__398D8EEE" FromRole="COSO" ToRole="PHONGHOC" />
+  </EntityType>
+  <EntityType Name="DIEM">
+    <Key>
+      <PropertyRef Name="IDSTUDENT" />
+      <PropertyRef Name="IDMONHOC" />
+    </Key>
+    <Property Name="IDSTUDENT" Type="Int32" Nullable="false" />
+    <Property Name="IDMONHOC" Type="Int32" Nullable="false" />
+    <Property Name="DIEM_TH" Type="Double" />
+    <Property Name="DIEM_LT" Type="Double" />
+    <Property Name="DIEM_TB" Type="Double" />
+    <Property Name="DAT" Type="Double" />
+    <Property Name="STC" Type="Double" />
+    <NavigationProperty Name="MONHOC" Relationship="Self.FK__DIEM__IDMONHOC__33D4B598" FromRole="DIEM" ToRole="MONHOC" />
+    <NavigationProperty Name="STUDENT" Relationship="Self.FK__DIEM__IDSTUDENT__31EC6D26" FromRole="DIEM" ToRole="STUDENT" />
+  </EntityType>
+  <EntityType Name="EVENT">
+    <Key>
+      <PropertyRef Name="IDEVENTS" />
+    </Key>
+    <Property Name="IDEVENTS" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TENEVENT" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="THOIGIANEV" Type="DateTime" Precision="3" />
+    <Property Name="IDUSER" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="USER" Relationship="Self.FK__EVENTS__IDUSER__300424B4" FromRole="EVENTS" ToRole="USER" />
+  </EntityType>
+  <EntityType Name="LICHHOC">
+    <Key>
+      <PropertyRef Name="IDTHOIGIAN" />
+      <PropertyRef Name="IDPHONGHOC" />
+    </Key>
+    <Property Name="IDTHOIGIAN" Type="Int32" Nullable="false" />
+    <Property Name="IDPHONGHOC" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="PHONGHOC" Relationship="Self.FK__LICHHOC__IDPHONG__38996AB5" FromRole="LICHHOC" ToRole="PHONGHOC" />
+    <NavigationProperty Name="THOIGIANHOC" Relationship="Self.FK__LICHHOC__IDTHOIG__3A81B327" FromRole="LICHHOC" ToRole="THOIGIANHOC" />
+    <NavigationProperty Name="LOPHOCs" Relationship="Self.FK__LOPHOC__3B75D760" FromRole="LICHHOC" ToRole="LOPHOC" />
+  </EntityType>
+  <EntityType Name="LOPHOC">
+    <Key>
+      <PropertyRef Name="IDLOPHOC" />
+    </Key>
+    <Property Name="IDLOPHOC" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TENLOPHOC" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="IDTHOIGIAN" Type="Int32" Nullable="false" />
+    <Property Name="IDPHONGHOC" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="LICHHOC" Relationship="Self.FK__LOPHOC__3B75D760" FromRole="LOPHOC" ToRole="LICHHOC" />
+    <NavigationProperty Name="STUDENTs" Relationship="Self.FK__STUDENT__IDLOPHO__3C69FB99" FromRole="LOPHOC" ToRole="STUDENT" />
+  </EntityType>
+  <EntityType Name="MONHOC">
+    <Key>
+      <PropertyRef Name="IDMONHOC" />
+    </Key>
+    <Property Name="IDMONHOC" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IDTINCHI" Type="Int32" Nullable="false" />
+    <Property Name="TENMONHOC" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="DIEMs" Relationship="Self.FK__DIEM__IDMONHOC__33D4B598" FromRole="MONHOC" ToRole="DIEM" />
+    <NavigationProperty Name="TINCHI" Relationship="Self.FK__MONHOC__IDTINCHI__36B12243" FromRole="MONHOC" ToRole="TINCHI" />
+    <NavigationProperty Name="NGANHs" Relationship="Self.CTDT" FromRole="MONHOC" ToRole="NGANH" />
+    <Property Name="IDMONTIENQUYET" Type="Int32" />
+  </EntityType>
+  <EntityType Name="NGANH">
+    <Key>
+      <PropertyRef Name="IDNGANH" />
+    </Key>
+    <Property Name="IDNGANH" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NAMENGANH" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="IDNIENKHOA" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="NIENKHOA" Relationship="Self.FK__NGANH__IDNIENKHO__37A5467C" FromRole="NGANH" ToRole="NIENKHOA" />
+    <NavigationProperty Name="MONHOCs" Relationship="Self.CTDT" FromRole="NGANH" ToRole="MONHOC" />
+  </EntityType>
+  <EntityType Name="NIENKHOA">
+    <Key>
+      <PropertyRef Name="IDNIENKHOA" />
+    </Key>
+    <Property Name="IDNIENKHOA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NAMENIENKHOA" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="THOIGIAN" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="NGANHs" Relationship="Self.FK__NGANH__IDNIENKHO__37A5467C" FromRole="NIENKHOA" ToRole="NGANH" />
+  </EntityType>
+  <EntityType Name="PERMISSION">
+    <Key>
+      <PropertyRef Name="IDPERMISSION" />
+    </Key>
+    <Property Name="IDPERMISSION" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NAMEPERMISSION" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="STATUS" Type="Boolean" />
+    <NavigationProperty Name="USERs" Relationship="Self.FK__USER__IDPERMISSI__3D5E1FD2" FromRole="PERMISSION" ToRole="USER" />
+  </EntityType>
+  <EntityType Name="PHONGHOC">
+    <Key>
+      <PropertyRef Name="IDPHONGHOC" />
+    </Key>
+    <Property Name="IDPHONGHOC" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TENPHONE" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="IDCOSO" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="COSO" Relationship="Self.FK__PHONGHOC__IDCOSO__398D8EEE" FromRole="PHONGHOC" ToRole="COSO" />
+    <NavigationProperty Name="LICHHOCs" Relationship="Self.FK__LICHHOC__IDPHONG__38996AB5" FromRole="PHONGHOC" ToRole="LICHHOC" />
+  </EntityType>
+  <EntityType Name="ROLE">
+    <Key>
+      <PropertyRef Name="IDROLE" />
+    </Key>
+    <Property Name="IDROLE" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NAMEROLE" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="STATUS" Type="Boolean" />
+    <NavigationProperty Name="USERs" Relationship="Self.FK__USER__IDROLE__30F848ED" FromRole="ROLE" ToRole="USER" />
+  </EntityType>
+  <EntityType Name="STUDENT">
+    <Key>
+      <PropertyRef Name="IDSTUDENT" />
+    </Key>
+    <Property Name="IDSTUDENT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IDUSER" Type="Int32" Nullable="false" />
+    <Property Name="MSSV" Type="Int32" />
+    <Property Name="IDLOPHOC" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="DIEMs" Relationship="Self.FK__DIEM__IDSTUDENT__31EC6D26" FromRole="STUDENT" ToRole="DIEM" />
+    <NavigationProperty Name="LOPHOC" Relationship="Self.FK__STUDENT__IDLOPHO__3C69FB99" FromRole="STUDENT" ToRole="LOPHOC" />
+    <NavigationProperty Name="USER" Relationship="Self.FK__STUDENT__IDUSER__2F10007B" FromRole="STUDENT" ToRole="USER" />
+  </EntityType>
+  <EntityType Name="THOIGIANHOC">
+    <Key>
+      <PropertyRef Name="IDTHOIGIAN" />
+    </Key>
+    <Property Name="IDTHOIGIAN" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="THOAIGIANBATDAU" Type="DateTime" Precision="3" />
+    <Property Name="THOIGIANKETTHUC" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="LICHHOCs" Relationship="Self.FK__LICHHOC__IDTHOIG__3A81B327" FromRole="THOIGIANHOC" ToRole="LICHHOC" />
+  </EntityType>
+  <EntityType Name="TINCHI">
+    <Key>
+      <PropertyRef Name="IDTINCHI" />
+    </Key>
+    <Property Name="IDTINCHI" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SOTINCHI" Type="Int32" />
+    <NavigationProperty Name="MONHOCs" Relationship="Self.FK__MONHOC__IDTINCHI__36B12243" FromRole="TINCHI" ToRole="MONHOC" />
+  </EntityType>
+  <EntityType Name="USER">
+    <Key>
+      <PropertyRef Name="IDUSER" />
+    </Key>
+    <Property Name="IDUSER" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="USERNAME" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="PASSWORD" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="FULLNAME" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="PHONE" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+    <Property Name="ADDRESS" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="EMAIL" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="IDROLE" Type="Int32" Nullable="false" />
+    <Property Name="IDPERMISSION" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="EVENTS" Relationship="Self.FK__EVENTS__IDUSER__300424B4" FromRole="USER" ToRole="EVENTS" />
+    <NavigationProperty Name="PERMISSION" Relationship="Self.FK__USER__IDPERMISSI__3D5E1FD2" FromRole="USER" ToRole="PERMISSION" />
+    <NavigationProperty Name="ROLE" Relationship="Self.FK__USER__IDROLE__30F848ED" FromRole="USER" ToRole="ROLE" />
+    <NavigationProperty Name="STUDENTs" Relationship="Self.FK__STUDENT__IDUSER__2F10007B" FromRole="USER" ToRole="STUDENT" />
+  </EntityType>
+  <Association Name="FK__PHONGHOC__IDCOSO__398D8EEE">
+    <End Role="COSO" Type="Self.COSO" Multiplicity="1" />
+    <End Role="PHONGHOC" Type="Self.PHONGHOC" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="COSO">
+        <PropertyRef Name="IDCOSO" />
+      </Principal>
+      <Dependent Role="PHONGHOC">
+        <PropertyRef Name="IDCOSO" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__DIEM__IDMONHOC__33D4B598">
+    <End Role="MONHOC" Type="Self.MONHOC" Multiplicity="1" />
+    <End Role="DIEM" Type="Self.DIEM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MONHOC">
+        <PropertyRef Name="IDMONHOC" />
+      </Principal>
+      <Dependent Role="DIEM">
+        <PropertyRef Name="IDMONHOC" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__DIEM__IDSTUDENT__31EC6D26">
+    <End Role="STUDENT" Type="Self.STUDENT" Multiplicity="1" />
+    <End Role="DIEM" Type="Self.DIEM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STUDENT">
+        <PropertyRef Name="IDSTUDENT" />
+      </Principal>
+      <Dependent Role="DIEM">
+        <PropertyRef Name="IDSTUDENT" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__EVENTS__IDUSER__300424B4">
+    <End Role="USER" Type="Self.USER" Multiplicity="1" />
+    <End Role="EVENTS" Type="Self.EVENT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USER">
+        <PropertyRef Name="IDUSER" />
+      </Principal>
+      <Dependent Role="EVENTS">
+        <PropertyRef Name="IDUSER" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__LICHHOC__IDPHONG__38996AB5">
+    <End Role="PHONGHOC" Type="Self.PHONGHOC" Multiplicity="1" />
+    <End Role="LICHHOC" Type="Self.LICHHOC" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PHONGHOC">
+        <PropertyRef Name="IDPHONGHOC" />
+      </Principal>
+      <Dependent Role="LICHHOC">
+        <PropertyRef Name="IDPHONGHOC" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__LICHHOC__IDTHOIG__3A81B327">
+    <End Role="THOIGIANHOC" Type="Self.THOIGIANHOC" Multiplicity="1" />
+    <End Role="LICHHOC" Type="Self.LICHHOC" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="THOIGIANHOC">
+        <PropertyRef Name="IDTHOIGIAN" />
+      </Principal>
+      <Dependent Role="LICHHOC">
+        <PropertyRef Name="IDTHOIGIAN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__LOPHOC__3B75D760">
+    <End Role="LICHHOC" Type="Self.LICHHOC" Multiplicity="1" />
+    <End Role="LOPHOC" Type="Self.LOPHOC" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LICHHOC">
+        <PropertyRef Name="IDTHOIGIAN" />
+        <PropertyRef Name="IDPHONGHOC" />
+      </Principal>
+      <Dependent Role="LOPHOC">
+        <PropertyRef Name="IDTHOIGIAN" />
+        <PropertyRef Name="IDPHONGHOC" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__STUDENT__IDLOPHO__3C69FB99">
+    <End Role="LOPHOC" Type="Self.LOPHOC" Multiplicity="1" />
+    <End Role="STUDENT" Type="Self.STUDENT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LOPHOC">
+        <PropertyRef Name="IDLOPHOC" />
+      </Principal>
+      <Dependent Role="STUDENT">
+        <PropertyRef Name="IDLOPHOC" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__MONHOC__IDTINCHI__36B12243">
+    <End Role="TINCHI" Type="Self.TINCHI" Multiplicity="1" />
+    <End Role="MONHOC" Type="Self.MONHOC" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TINCHI">
+        <PropertyRef Name="IDTINCHI" />
+      </Principal>
+      <Dependent Role="MONHOC">
+        <PropertyRef Name="IDTINCHI" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__NGANH__IDNIENKHO__37A5467C">
+    <End Role="NIENKHOA" Type="Self.NIENKHOA" Multiplicity="1" />
+    <End Role="NGANH" Type="Self.NGANH" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NIENKHOA">
+        <PropertyRef Name="IDNIENKHOA" />
+      </Principal>
+      <Dependent Role="NGANH">
+        <PropertyRef Name="IDNIENKHOA" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__USER__IDPERMISSI__3D5E1FD2">
+    <End Role="PERMISSION" Type="Self.PERMISSION" Multiplicity="1" />
+    <End Role="USER" Type="Self.USER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PERMISSION">
+        <PropertyRef Name="IDPERMISSION" />
+      </Principal>
+      <Dependent Role="USER">
+        <PropertyRef Name="IDPERMISSION" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__USER__IDROLE__30F848ED">
+    <End Role="ROLE" Type="Self.ROLE" Multiplicity="1" />
+    <End Role="USER" Type="Self.USER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ROLE">
+        <PropertyRef Name="IDROLE" />
+      </Principal>
+      <Dependent Role="USER">
+        <PropertyRef Name="IDROLE" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__STUDENT__IDUSER__2F10007B">
+    <End Role="USER" Type="Self.USER" Multiplicity="1" />
+    <End Role="STUDENT" Type="Self.STUDENT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USER">
+        <PropertyRef Name="IDUSER" />
+      </Principal>
+      <Dependent Role="STUDENT">
+        <PropertyRef Name="IDUSER" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CTDT">
+    <End Role="MONHOC" Type="Self.MONHOC" Multiplicity="*" />
+    <End Role="NGANH" Type="Self.NGANH" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="DACSEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="COSOes" EntityType="Self.COSO" />
+    <EntitySet Name="DIEMs" EntityType="Self.DIEM" />
+    <EntitySet Name="EVENTS" EntityType="Self.EVENT" />
+    <EntitySet Name="LICHHOCs" EntityType="Self.LICHHOC" />
+    <EntitySet Name="LOPHOCs" EntityType="Self.LOPHOC" />
+    <EntitySet Name="MONHOCs" EntityType="Self.MONHOC" />
+    <EntitySet Name="NGANHs" EntityType="Self.NGANH" />
+    <EntitySet Name="NIENKHOAs" EntityType="Self.NIENKHOA" />
+    <EntitySet Name="PERMISSIONs" EntityType="Self.PERMISSION" />
+    <EntitySet Name="PHONGHOCs" EntityType="Self.PHONGHOC" />
+    <EntitySet Name="ROLEs" EntityType="Self.ROLE" />
+    <EntitySet Name="STUDENTs" EntityType="Self.STUDENT" />
+    <EntitySet Name="THOIGIANHOCs" EntityType="Self.THOIGIANHOC" />
+    <EntitySet Name="TINCHIs" EntityType="Self.TINCHI" />
+    <EntitySet Name="USERs" EntityType="Self.USER" />
+    <AssociationSet Name="FK__PHONGHOC__IDCOSO__398D8EEE" Association="Self.FK__PHONGHOC__IDCOSO__398D8EEE">
+      <End Role="COSO" EntitySet="COSOes" />
+      <End Role="PHONGHOC" EntitySet="PHONGHOCs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DIEM__IDMONHOC__33D4B598" Association="Self.FK__DIEM__IDMONHOC__33D4B598">
+      <End Role="MONHOC" EntitySet="MONHOCs" />
+      <End Role="DIEM" EntitySet="DIEMs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DIEM__IDSTUDENT__31EC6D26" Association="Self.FK__DIEM__IDSTUDENT__31EC6D26">
+      <End Role="STUDENT" EntitySet="STUDENTs" />
+      <End Role="DIEM" EntitySet="DIEMs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__EVENTS__IDUSER__300424B4" Association="Self.FK__EVENTS__IDUSER__300424B4">
+      <End Role="USER" EntitySet="USERs" />
+      <End Role="EVENTS" EntitySet="EVENTS" />
+    </AssociationSet>
+    <AssociationSet Name="FK__LICHHOC__IDPHONG__38996AB5" Association="Self.FK__LICHHOC__IDPHONG__38996AB5">
+      <End Role="PHONGHOC" EntitySet="PHONGHOCs" />
+      <End Role="LICHHOC" EntitySet="LICHHOCs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__LICHHOC__IDTHOIG__3A81B327" Association="Self.FK__LICHHOC__IDTHOIG__3A81B327">
+      <End Role="THOIGIANHOC" EntitySet="THOIGIANHOCs" />
+      <End Role="LICHHOC" EntitySet="LICHHOCs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__LOPHOC__3B75D760" Association="Self.FK__LOPHOC__3B75D760">
+      <End Role="LICHHOC" EntitySet="LICHHOCs" />
+      <End Role="LOPHOC" EntitySet="LOPHOCs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__STUDENT__IDLOPHO__3C69FB99" Association="Self.FK__STUDENT__IDLOPHO__3C69FB99">
+      <End Role="LOPHOC" EntitySet="LOPHOCs" />
+      <End Role="STUDENT" EntitySet="STUDENTs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__MONHOC__IDTINCHI__36B12243" Association="Self.FK__MONHOC__IDTINCHI__36B12243">
+      <End Role="TINCHI" EntitySet="TINCHIs" />
+      <End Role="MONHOC" EntitySet="MONHOCs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__NGANH__IDNIENKHO__37A5467C" Association="Self.FK__NGANH__IDNIENKHO__37A5467C">
+      <End Role="NIENKHOA" EntitySet="NIENKHOAs" />
+      <End Role="NGANH" EntitySet="NGANHs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__USER__IDPERMISSI__3D5E1FD2" Association="Self.FK__USER__IDPERMISSI__3D5E1FD2">
+      <End Role="PERMISSION" EntitySet="PERMISSIONs" />
+      <End Role="USER" EntitySet="USERs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__USER__IDROLE__30F848ED" Association="Self.FK__USER__IDROLE__30F848ED">
+      <End Role="ROLE" EntitySet="ROLEs" />
+      <End Role="USER" EntitySet="USERs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__STUDENT__IDUSER__2F10007B" Association="Self.FK__STUDENT__IDUSER__2F10007B">
+      <End Role="USER" EntitySet="USERs" />
+      <End Role="STUDENT" EntitySet="STUDENTs" />
+    </AssociationSet>
+    <AssociationSet Name="CTDT" Association="Self.CTDT">
+      <End Role="MONHOC" EntitySet="MONHOCs" />
+      <End Role="NGANH" EntitySet="NGANHs" />
+    </AssociationSet>
+    <FunctionImport Name="proc_CryptData" ReturnType="Collection(String)">
+      <Parameter Name="Data" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="sysdiagrams" EntityType="DACSModel.sysdiagram" />
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(DACSModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(DACSModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+  </EntityContainer>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+</Schema>
